@@ -51,10 +51,6 @@ class PlantByID(Resource):
         plant = Plant.query.filter(Plant.id == id).first()
         data = request.get_json()
         for attr, value in data.items():
-            if attr == "is_in_stock":
-                if isinstance(value, str):
-                    value = value.lower() == "true"
-                
             setattr(plant, attr, value)
 
         db.session.add(plant)
